@@ -1,6 +1,6 @@
-<p align="center">
+<h1 align="center">
   <strong>Dugeon Fantasy</strong>
-</p>
+</h1>
 <p align="center">
   <a href="https://discord.gg/wCbKBZF9cV">
     <img src="https://img.shields.io/discord/810571477316403233?style=for-the-badge" alt="discord - users online" />
