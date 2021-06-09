@@ -1,5 +1,5 @@
 <h1 align="center">
-  <strong>Dugeon Fantasy</strong>
+  <strong>Dungeon Fantasy</strong>
 </h1>
 <p align="center">
   Dungeon Fantasy es un videojuego de acción, fantasía y aventura, su historia es de un joven aventurero llamado Kade, quien se embarca en una travesía para conseguir riquezas y fama para así ser el mejor cazador de monstruos de su era, pero a medida que avanza por su aventura se ve sumergido en un mar de pesadillas al adentrarse en la Dungeon de los monstruos más feroces teniendo que afrontarlos para volver a casa. 
