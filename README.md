@@ -1,5 +1,5 @@
 <h1 align="center">
-  <strong>Dugeon Fantasy</strong>
+  <strong>Dungeon Fantasy</strong>
 </h1>
 <div align="center">
   <img align="center" height=300 src="https://github.com/juanpbueno7/Dungeon-Fantasy/blob/main/archivos/Portada%201.png"/>
