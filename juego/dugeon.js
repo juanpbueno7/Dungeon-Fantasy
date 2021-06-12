@@ -1,66 +1,49 @@
-//pong clone
-//mouse to control both paddles
 
-var paddleA, paddleB, ball, wallTop, wallBottom;
-var MAX_SPEED = 10;
+var backGround;
+var idleKade;
+var kadeFusil;
+
+var kade;
+
+function preload(){
+  backGround = loadImage("../archivos/Lago.png");
+  idleKade = loadImage("../archivos/Kade pistola 3.png");
+  kadeFusil = loadAnimation("../archivos/Kade pistola 1.png", "../archivos/Kade pistola 2.png"); 
+  kade = createSprite(400, 200, 50, 53);
+  kade.addAnimation("move", "../archivos/Kade pistola 1.png", "../archivos/Kade pistola 2.png");
+  kade.addAnimation("left-move", "../archivos/Kade pistola 1 izq.png", "../archivos/Kade pistola 2 izq.png");  
+  kade.addAnimation("idle", "../archivos/Kade pistola 3.png");
+
+}
 
 function setup() {
-  createCanvas(800, 400);
-  //frameRate(6);
-
-  paddleA = createSprite(30, height/2, 10, 100);
-  paddleA.immovable = true;
-
-  paddleB = createSprite(width-28, height/2, 10, 100);
-  paddleB.immovable = true;
-
-  wallTop = createSprite(width/2, -30/2, width, 30);
-  wallTop.immovable = true;
-
-  wallBottom = createSprite(width/2, height+30/2, width, 30);
-  wallBottom.immovable = true;
-
-  ball = createSprite(width/2, height/2, 10, 10);
-  ball.maxSpeed = MAX_SPEED;
-
-  paddleA.shapeColor = paddleB.shapeColor =ball.shapeColor = color(255, 255, 255);
-
-  ball.setSpeed(MAX_SPEED, -180);
+  var cnv = createCanvas(800, 400);
+  var x = (windowWidth - width) / 2;
+  cnv.position(x);
 }
 
 function draw() {
-  background(0);
+  background(backGround);
 
-  paddleA.position.y = constrain(mouseY, paddleA.height/2, height-paddleA.height/2);
-  paddleB.position.y = constrain(mouseY, paddleA.height/2, height-paddleA.height/2);
-
-  ball.bounce(wallTop);
-  ball.bounce(wallBottom);
-
-  var swing;
-  if(ball.bounce(paddleA)) {
-    swing = (ball.position.y-paddleA.position.y)/3;
-    ball.setSpeed(MAX_SPEED, ball.getDirection()+swing);
-  }
-
-  if(ball.bounce(paddleB)) {
-    swing = (ball.position.y-paddleB.position.y)/3;
-    ball.setSpeed(MAX_SPEED, ball.getDirection()-swing);
-  }
-
-  if(ball.position.x<0) {
-    ball.position.x = width/2;
-    ball.position.y = height/2;
-    ball.setSpeed(MAX_SPEED, 0);
-  }
-
-  if(ball.position.x>width) {
-    ball.position.x = width/2;
-    ball.position.y = height/2;
-    ball.setSpeed(MAX_SPEED, 180);
+  if(keyDown('a')){
+    kade.changeAnimation('move');
+    kade.mirrorX(-1);
+    kade.velocity.x = -1;
+  }else if (keyDown('d')){    
+    kade.changeAnimation('move');
+    kade.mirrorX(1);
+    kade.velocity.x = 1;
+  }else if(keyDown('w')){    
+    kade.changeAnimation('move');
+    kade.velocity.y = -1;
+  }else if(keyDown('s')){    
+    kade.changeAnimation('move');
+    kade.velocity.y = 1;
+  }else{
+    kade.changeAnimation('idle');
+    kade.velocity.x = 0;
+    kade.velocity.y = 0;
   }
 
   drawSprites();
-
 }
-
