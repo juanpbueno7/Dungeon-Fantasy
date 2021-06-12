@@ -1,7 +1,8 @@
-<h1 align="center">
-  <strong>Dungeon Fantasy</strong>
-</h1>
 <div align="center">
+  <h1>
+    <strong>Dungeon Fantasy</strong>
+  </h1>
+
   <img align="center" height=300 src="https://github.com/juanpbueno7/Dungeon-Fantasy/blob/main/archivos/Portada%201.png"/>
 </div>   
 <p align="center">
