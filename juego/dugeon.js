@@ -10,10 +10,11 @@ var trebol;
 var enemigoDead;
 var enemigoDemon;
 var enemigoCerdo;
+var enemigoCerdoHits = 0;
 var ondaGolpe;
 var bomba;
 var manzana;
-var scene = 2;
+var scene = 0;
 var velocidad = 1;
 var hits = 0; 
 
@@ -39,7 +40,7 @@ function preload(){
   disparos = new Group();
 
 
-  /* Grupo de personajes escena 1 */ 
+  /* Grupo de objetos escena 1 */ 
   house = createSprite(200, 210);
   house.addImage(loadImage('../archivos/CasaPlaya.png'));
   house.setCollider('rectangle', 0, 0, 300, 300);
@@ -174,6 +175,10 @@ function menuInicio(){
   */
 
   background(backGroundInicio);
+  cora1.visible = false;
+  cora2.visible = false;
+  cora3.visible = false;
+  cora4.visible = false;
   
 }
 
@@ -190,12 +195,36 @@ function escenaPlaya(){
 
   /* Objetos de colisión */ 
 
-   
+  cora1.visible = true;
+  cora2.visible = true;
+  cora3.visible = true;
+  cora4.visible = true; 
   house.visible = true;
   caja1.visible = true;
   caja2.visible = true;
+
+  /* Movimiento centinela 1 */
   enemigoDead.visible = true;
+  if (enemigoDead.position.x === 200){
+    enemigoDead.velocity.x = 1;    
+    enemigoDead.mirrorX(-1);
+  }
+  if (enemigoDead.position.x === 300){
+    enemigoDead.velocity.x = -1;
+    enemigoDead.mirrorX(1);
+  }
+
+  /* Movimiento centinela 2 */
   enemigoDemon.visible = true;
+  if (enemigoDemon.position.y === 100){
+    enemigoDemon.velocity.y = 1;
+    enemigoDemon.mirrorX(-1);
+  }
+  if (enemigoDemon.position.y === 350){
+    enemigoDemon.velocity.y = -1;
+    enemigoDemon.mirrorX(1);
+  }
+
   trebol.visible = true;
   kade.visible = true;
 
@@ -228,42 +257,61 @@ function escenaLago(){
   background(backGroundLago);
 
   enemigoDead.visible = true;
+  enemigoDead.position.x = 330;
+  enemigoDead.position.y = 200;
   enemigoDemon.visible = true;
+  enemigoDemon.position.x = 270;
+  enemigoDemon.position.y = 200;
   enemigoCerdo.visible = true;
   kade.visible = true;
   bomba.visible = true;
   manzana.visible = true;
   enemigoCerdo.mirrorX(-1);
 
+
+  if(enemigoDead.overlap(disparos)){
+    enemigoDead.rotation = random(0,5);
+  }   
+  
+  if(enemigoDemon.overlap(disparos)){
+    enemigoDemon.rotation = random(0,5);
+  }  
  
   if(enemigoCerdo.overlap(disparos)){
+    enemigoCerdoHits += 1;
     enemigoCerdo.rotation = random(0,5);
+    if (enemigoCerdoHits > 100){
+      enemigoCerdo.visible = false;
+    }
   }
-
+  
   if(kade.overlap(ondasGolpe)){
     hits += 1;
-    if (hits === 1) cora4.visible = false;
-    else if (hits === 2) cora3.visible = false;
-    else if (hits === 3) cora2.visible = false;
-    else if (hits === 4) cora1.visible = false;
+    if (hits > 1 && hits <= 10) cora4.visible = false;
+    else if (hits > 10 && hits <= 20) cora3.visible = false;
+    else if (hits > 20 && hits <= 30) cora2.visible = false;
+    else if (hits > 30 && hits <= 40) cora1.visible = false;
   }
+
 }
 
 function mouseClicked() {
   if (scene === 0) scene = 1;
   var balita = createSprite(kade.position.x, kade.position.y);
   balita.addImage(disparo);
-  balita.setSpeed(10+kade.getSpeed(), rotation);
+  balita.setSpeed(10+kade.getSpeed(), random(rotation+15,rotation-15));
   balita.life = 30;
   disparos.add(balita);
 }
 
 function ondasEnemigas(){
-  var ondita = createSprite(enemigoCerdo.position.x, enemigoCerdo.position.y);
-  ondita.addImage(ondaGolpe);
-  ondita.setSpeed(10+enemigoCerdo.getSpeed(), random(180, 130));
-  ondita.life = 30;
-  ondasGolpe.add(ondita);
+  if (scene === 2){
+    var ondita = createSprite(enemigoCerdo.position.x, enemigoCerdo.position.y);
+    ondita.addImage(ondaGolpe);
+    ondita.setSpeed(10+enemigoCerdo.getSpeed(), random(180, 130));
+    ondita.life = 30;
+    ondasGolpe.add(ondita);
+  }
 }
 
 
