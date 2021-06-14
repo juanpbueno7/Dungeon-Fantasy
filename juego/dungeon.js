@@ -35,7 +35,8 @@ function preload(){
   kade.visible = false;
 
 
-  /* Grupo de disparos */  
+  /* Grupo de disparos */ 
+  //cada disparo disminuye porcentualmente la vida de los enemigos
   disparo = loadImage("../archivos/Bola de fuego.png");
   disparos = new Group();
 
