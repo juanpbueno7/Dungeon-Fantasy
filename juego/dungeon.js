@@ -26,7 +26,8 @@ function preload(){
   backGroundPlaya = loadImage("../archivos/Playa.png");
     
 
-  /* Sprite del personaje principal Kade */ 
+  /* Sprite del personaje principal Kade */
+  // El personaje se mueve dependiendo de la dirección marcada
   kade = createSprite(400, 200, 50, 53);
   kade.setCollider('rectangle', 0, 26, 75, 75);
   kade.addAnimation("move", "../archivos/Kade pistola 1.png", "../archivos/Kade pistola 2.png");
