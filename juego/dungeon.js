@@ -1,3 +1,9 @@
+//Este proyecto inicia con la participación de : Andrés Gómez - Juan Buesaquillo - Juan Bueno - Christian Castro desde el IDE de Visual Studio 
+/* Querido profesor, este proyecto no obtubo una serie de commits debido a que mi persona junto a Juan Buesaquillo y Christian Castro al no poseer un repo de github no logramos
+destacar nuestros nombres en el proyecto, una disculpa. */
+
+
+
 var backGroundLago;
 var backGroundPlaya;
 var disparo;
