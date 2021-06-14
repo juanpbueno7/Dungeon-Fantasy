@@ -112,6 +112,7 @@ function setup() {
     Configruación general del juego 
   
   */
+  // modificación objeto
 
   var cnv = createCanvas(800, 400);
   cnv.position((windowWidth - width) / 2);
